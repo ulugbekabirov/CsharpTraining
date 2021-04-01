@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Numerics;
 
 namespace Calculator
 {
     public class DivideOperator : IOperator
     {
-        public double doOperation(double num1, double num2)
+        public BigInteger doOperation(BigInteger num1, BigInteger num2)
         {
             if (num2 == 0)
             {

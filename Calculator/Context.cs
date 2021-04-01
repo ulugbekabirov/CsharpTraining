@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using System.Numerics;
+
+namespace Calculator
 {
     public class Context
     {
@@ -9,7 +11,7 @@
             this._operator = _operator;
         }
 
-        public double executeOperator(double num1, double num2)
+        public BigInteger executeOperator(BigInteger num1, BigInteger num2)
         {
             return _operator.doOperation(num1, num2);
         }

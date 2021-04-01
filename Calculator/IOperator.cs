@@ -1,7 +1,9 @@
-﻿namespace Calculator
+﻿using System.Numerics;
+
+namespace Calculator
 {
     public interface IOperator
     {
-        public double doOperation(double num1, double num2);
+        public BigInteger doOperation(BigInteger num1, BigInteger num2);
     }
 }

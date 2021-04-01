@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -44,7 +45,6 @@ namespace Calculator
                 input += btn.Text;
                 displayToTextBox(input);
             }
-
         }
 
         private void dot_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace Calculator
             {
                 string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
                 string[] postfix = infixToPostfix(infix);
-                double result = evaluatePostfix(postfix);
+                BigInteger result = evaluatePostfix(postfix);
                 displayToTextBox(result.ToString());
             }
             catch (Exception ex)
@@ -105,10 +105,10 @@ namespace Calculator
             }
         }
 
-        private double evaluatePostfix(string[] postfix)
+        private BigInteger evaluatePostfix(string[] postfix)
         {
-            Stack<double> stack = new Stack<double>();
-            double val1, val2;
+            Stack<BigInteger> stack = new Stack<BigInteger>();
+            BigInteger val1, val2;
             for (int i = 0; i < postfix.Length; i++)
             {
                 switch (postfix[i])
@@ -134,7 +134,7 @@ namespace Calculator
                         stack.Push(_context.executeOperator(val2, val1));
                         break;
                     default:
-                        stack.Push(double.Parse(postfix[i]));
+                        stack.Push(BigInteger.Parse(postfix[i]));
                         break;
                 }
             }
@@ -151,7 +151,7 @@ namespace Calculator
             {
                 var c = infix[i];
 
-                if (decimal.TryParse(c, out _))
+                if (BigInteger.TryParse(c, out _))
                 {
                     result.Add(c);
                 }
@@ -197,7 +197,7 @@ namespace Calculator
             return result.ToArray();
         }
 
-        internal static int precedence(string ch)
+        private static int precedence(string ch)
         {
             switch (ch)
             {
