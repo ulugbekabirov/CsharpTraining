@@ -17,8 +17,10 @@ namespace Calculator
         string operand2 = String.Empty;
         char operation;
         double result;
+        string[] tokens = new string[] { };
+        private Timer _timer;
 
-
+        Stack<double> stack = new Stack<double>();
 
         public Form1()
         {
@@ -35,97 +37,61 @@ namespace Calculator
             
         }
 
-        private void two_Click(object sender, EventArgs e)
+        private void operand_Click(object sender, EventArgs e)
         {
-            input += "2";
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input += btn.Text;
+            textBox1.Text += input;
         }
 
-        private void three_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
-            input += "3";
-        }
-
-        private void plus_Click(object sender, EventArgs e)
-        {
-            input += "+";
-        }
-
-        private void four_Click(object sender, EventArgs e)
-        {
-            input += "4";
-        }
-
-        private void five_Click(object sender, EventArgs e)
-        {
-            input += "5";
-        }
-
-        private void six_Click(object sender, EventArgs e)
-        {
-            input += "6";
-        }
-
-        private void minus_Click(object sender, EventArgs e)
-        {
-            input += "-";
-        }
-
-        private void seven_Click(object sender, EventArgs e)
-        {
-            input += "7";
-        }
-
-        private void eight_Click(object sender, EventArgs e)
-        {
-            input += "8";
-        }
-
-        private void multiply_Click(object sender, EventArgs e)
-        {
-            input += "*";
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input += btn.Text;
+            textBox1.Text += input;
         }
 
         private void dot_Click(object sender, EventArgs e)
         {
-            input += ".";
-        }
-
-        private void zero_Click(object sender, EventArgs e)
-        {
-            input += "0";
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input += btn.Text;
+            textBox1.Text += input;
         }
 
         private void backspace_Click(object sender, EventArgs e)
         {
-                
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input = input.Remove(input.Length - 1, 1);
+            textBox1.Text += input;
         }
 
-        private void divide_Click(object sender, EventArgs e)
+        private void backspace_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            textBox1.Text = "";
+            input = string.Empty;
         }
 
         private void leftParenthesis_Click(object sender, EventArgs e)
         {
-
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input += btn.Text;
+            textBox1.Text += input;
         }
 
         private void rightParenthesis_Click(object sender, EventArgs e)
         {
-
+            Button btn = sender as Button;
+            textBox1.Text = "";
+            input += btn.Text;
+            textBox1.Text += input;
         }
 
         private void compute_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void one_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nine_Click(object sender, EventArgs e)
         {
 
         }
