@@ -11,7 +11,8 @@ namespace Calculator
     {
         private Context _context;
         private string input = String.Empty;
-        private string splitPattern = "([-+*/()])";
+        private readonly string splitPattern = "([-+*/()])";
+        private readonly char[] availableOperators = { '+', '-', '*', '/' };
         public Form1()
         {
             InitializeComponent();
@@ -38,15 +39,22 @@ namespace Calculator
         private void operator_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            input += btn.Text;
-            displayToTextBox(input);
+            if (!availableOperators.Contains(input.Last()))
+            {
+                input += btn.Text;
+                displayToTextBox(input);
+            }
+
         }
 
         private void dot_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            input += btn.Text;
-            displayToTextBox(input);
+            if (char.IsDigit(input.LastOrDefault()))
+            {
+                input += btn.Text;
+                displayToTextBox(input);
+            }
         }
 
         private void backspace_Click(object sender, EventArgs e)
@@ -80,11 +88,21 @@ namespace Calculator
 
         private void compute_Click(object sender, EventArgs e)
         {
-            string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-            string[] postfix = infixToPostfix(infix);
-            double result = evaluatePostfix(postfix);
-            displayToTextBox(result.ToString()); 
-            input = string.Empty;
+            try
+            {
+                string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+                string[] postfix = infixToPostfix(infix);
+                double result = evaluatePostfix(postfix);
+                displayToTextBox(result.ToString());
+            }
+            catch (Exception ex)
+            {
+                displayToTextBox(ex.Message);
+            }
+            finally
+            {
+                input = string.Empty;
+            }
         }
 
         private double evaluatePostfix(string[] postfix)
@@ -126,14 +144,14 @@ namespace Calculator
 
         private string[] infixToPostfix(string[] infix)
         {
-            var result = new List<string>(); 
+            var result = new List<string>();
             var stack = new Stack<string>();
 
             for (int i = 0; i < infix.Length; ++i)
             {
-                string c = infix[i];
+                var c = infix[i];
 
-                if (c.All(char.IsDigit))
+                if (decimal.TryParse(c, out _))
                 {
                     result.Add(c);
                 }
@@ -153,14 +171,14 @@ namespace Calculator
 
                     if (stack.Count > 0 && stack.Peek() != "(")
                     {
-                        throw new InvalidOperationException("Invalid Expression"); 
+                        throw new InvalidOperationException("Invalid Expression");
                     }
                     else
                     {
                         stack.Pop();
                     }
                 }
-                else 
+                else
                 {
                     while (stack.Count > 0 && precedence(c) <= precedence(stack.Peek()))
                     {
