@@ -50,6 +50,7 @@ namespace Calculator
             this.compute = new System.Windows.Forms.Button();
             this.one = new System.Windows.Forms.Button();
             this.nine = new System.Windows.Forms.Button();
+            this.erase = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -261,16 +262,15 @@ namespace Calculator
             this.backspace.TabIndex = 22;
             this.backspace.UseVisualStyleBackColor = false;
             this.backspace.Click += new System.EventHandler(this.backspace_Click);
-            this.backspace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.backspace_KeyPress);
             // 
             // compute
             // 
             this.compute.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.compute.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.compute.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.compute.Location = new System.Drawing.Point(209, 470);
+            this.compute.Location = new System.Drawing.Point(308, 470);
             this.compute.Name = "compute";
-            this.compute.Size = new System.Drawing.Size(174, 81);
+            this.compute.Size = new System.Drawing.Size(75, 81);
             this.compute.TabIndex = 23;
             this.compute.Text = "=";
             this.compute.UseVisualStyleBackColor = false;
@@ -300,11 +300,25 @@ namespace Calculator
             this.nine.UseVisualStyleBackColor = false;
             this.nine.Click += new System.EventHandler(this.operand_Click);
             // 
+            // erase
+            // 
+            this.erase.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.erase.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.erase.ForeColor = System.Drawing.Color.OrangeRed;
+            this.erase.Location = new System.Drawing.Point(209, 470);
+            this.erase.Name = "erase";
+            this.erase.Size = new System.Drawing.Size(75, 81);
+            this.erase.TabIndex = 26;
+            this.erase.Text = "C";
+            this.erase.UseVisualStyleBackColor = false;
+            this.erase.Click += new System.EventHandler(this.erase_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 563);
+            this.Controls.Add(this.erase);
             this.Controls.Add(this.nine);
             this.Controls.Add(this.one);
             this.Controls.Add(this.compute);
@@ -354,6 +368,7 @@ namespace Calculator
         private System.Windows.Forms.Button compute;
         private System.Windows.Forms.Button one;
         private System.Windows.Forms.Button nine;
+        private System.Windows.Forms.Button erase;
     }
 }
 

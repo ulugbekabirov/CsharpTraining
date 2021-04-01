@@ -13,13 +13,8 @@ namespace Calculator
     public partial class Form1 : Form
     {
         private string input = String.Empty;
-        string operand1 = String.Empty;
-        string operand2 = String.Empty;
-        char operation;
         double result;
         string[] tokens = new string[] { };
-        private Timer _timer;
-
         Stack<double> stack = new Stack<double>();
 
         public Form1()
@@ -69,12 +64,6 @@ namespace Calculator
             textBox1.Text += input;
         }
 
-        private void backspace_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            textBox1.Text = "";
-            input = string.Empty;
-        }
-
         private void leftParenthesis_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -91,9 +80,16 @@ namespace Calculator
             textBox1.Text += input;
         }
 
+        private void erase_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            input = string.Empty;
+        }
+
         private void compute_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }
