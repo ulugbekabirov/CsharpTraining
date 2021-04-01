@@ -27,69 +27,75 @@ namespace Calculator
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void displayToTextBox(string text)
         {
-            
+            textBox.Text = "";
+            textBox.Text += text;
         }
 
         private void operand_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input += btn.Text;
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void operator_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input += btn.Text;
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void dot_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input += btn.Text;
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void backspace_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input = input.Remove(input.Length - 1, 1);
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void leftParenthesis_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input += btn.Text;
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void rightParenthesis_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            textBox1.Text = "";
             input += btn.Text;
-            textBox1.Text += input;
+            displayToTextBox(input);
         }
 
         private void erase_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
             input = string.Empty;
+            displayToTextBox(input);
         }
 
         private void compute_Click(object sender, EventArgs e)
         {
-
+            string[] postfix = infixToPostfix(input);
+            double result = evaluatePostfix(postfix);
         }
 
+        private double evaluatePostfix(string[] postfix)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private string[] infixToPostfix(string infix)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
