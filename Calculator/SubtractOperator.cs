@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Calculator
+﻿namespace Calculator
 {
     public class SubtractOperator : IOperator
     {

@@ -1,6 +1,5 @@
 using Xunit;
 using Calculator;
-using System.Numerics;
 
 namespace UnitTests
 {
