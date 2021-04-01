@@ -87,34 +87,42 @@ namespace Calculator
             string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             string[] postfix = infixToPostfix(infix);
             double result = evaluatePostfix(postfix);
-            displayToTextBox(result.ToString());
+            displayToTextBox(result.ToString()); 
+            input = string.Empty;
         }
 
         private double evaluatePostfix(string[] postfix)
         {
             Stack<double> stack = new Stack<double>();
-
+            double val1, val2;
             for (int i = 0; i < postfix.Length; i++)
             {
                 switch (postfix[i])
                 {
                     case "+":
                         _context = new Context(new AddOperator());
+                        stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
                         break;
                     case "-":
                         _context = new Context(new SubtractOperator());
+                        val1 = stack.Pop();
+                        val2 = stack.Pop();
+                        stack.Push(_context.executeOperator(val2, val1));
                         break;
                     case "*":
                         _context = new Context(new MultiplyOperator());
+                        stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
                         break;
                     case "/":
                         _context = new Context(new DivideOperator());
+                        val1 = stack.Pop();
+                        val2 = stack.Pop();
+                        stack.Push(_context.executeOperator(val2, val1));
                         break;
                     default:
                         stack.Push(double.Parse(postfix[i]));
                         break;
                 }
-                stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
             }
 
             return stack.Pop();
