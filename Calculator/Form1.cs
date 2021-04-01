@@ -93,7 +93,7 @@ namespace Calculator
                 {
                     string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
                     string[] postfix = RPNCalculator.infixToPostfix(infix);
-                    BigInteger result = RPNCalculator.evaluatePostfix(postfix);
+                    decimal result = RPNCalculator.evaluatePostfix(postfix);
                     displayToTextBox(result.ToString());
                 }
                 catch (Exception ex)

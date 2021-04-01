@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator
 {
@@ -11,10 +8,10 @@ namespace Calculator
     {
         private static Context _context;
 
-        public static BigInteger evaluatePostfix(string[] postfix)
+        public static decimal evaluatePostfix(string[] postfix)
         {
-            Stack<BigInteger> stack = new Stack<BigInteger>();
-            BigInteger val1, val2;
+            Stack<decimal> stack = new Stack<decimal>();
+            decimal val1, val2;
             for (int i = 0; i < postfix.Length; i++)
             {
                 switch (postfix[i])
@@ -40,7 +37,7 @@ namespace Calculator
                         stack.Push(_context.executeOperator(val2, val1));
                         break;
                     default:
-                        stack.Push(BigInteger.Parse(postfix[i]));
+                        stack.Push(decimal.Parse(postfix[i]));
                         break;
                 }
             }
@@ -57,7 +54,7 @@ namespace Calculator
             {
                 var c = infix[i];
 
-                if (BigInteger.TryParse(c, out _))
+                if (decimal.TryParse(c, out _))
                 {
                     result.Add(c);
                 }

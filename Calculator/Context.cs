@@ -11,7 +11,7 @@ namespace Calculator
             this._operator = _operator;
         }
 
-        public BigInteger executeOperator(BigInteger num1, BigInteger num2)
+        public decimal executeOperator(decimal num1, decimal num2)
         {
             return _operator.doOperation(num1, num2);
         }

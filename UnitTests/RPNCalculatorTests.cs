@@ -1,6 +1,6 @@
-using System;
 using Xunit;
 using Calculator;
+using System.Numerics;
 
 namespace UnitTests
 {
@@ -18,6 +18,34 @@ namespace UnitTests
 
             //Assert
             Assert.Equal(postfix, expectedValue);
+        }
+
+        [Fact]
+        public void evaluatePostfix_PassIntegersInPostfix_ComputesExpression()
+        {
+            //Arrange
+            var inputValue = new string[] { "20", "50", "+", "30", "20", "+", "*" };
+            var expectedValue = new decimal(3500);
+
+            //Act
+            var result = RPNCalculator.evaluatePostfix(inputValue);
+
+            //Assert
+            Assert.Equal(result, expectedValue);
+        }
+
+        [Fact]
+        public void evaluatePostfix_PassDoubleInPostfix_ComputesExpression()
+        {
+            //Arrange 
+            var inputValue = new string[] { "2", "5.5", "+", "3.3", "2.2", "+", "*" };
+            var expectedValue = new decimal(42.9);
+
+            //Act
+            var result = RPNCalculator.evaluatePostfix(inputValue);
+
+            //Assert
+            Assert.Equal(result, expectedValue);
         }
     }
 }
