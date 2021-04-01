@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    public class MinusOperator : IOperator
+    public class SubtractOperator : IOperator
     {
         public double doOperation(double num1, double num2)
         {

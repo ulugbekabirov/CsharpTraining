@@ -99,17 +99,22 @@ namespace Calculator
                 switch (postfix[i])
                 {
                     case "+":
-                        _context = new Context(new )
+                        _context = new Context(new AddOperator());
                         break;
                     case "-":
+                        _context = new Context(new SubtractOperator());
                         break;
                     case "*":
+                        _context = new Context(new MultiplyOperator());
                         break;
                     case "/":
+                        _context = new Context(new DivideOperator());
                         break;
                     default:
+                        stack.Push(double.Parse(postfix[i]));
                         break;
                 }
+                stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
             }
 
             return stack.Pop();
