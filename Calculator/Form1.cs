@@ -13,6 +13,7 @@ namespace Calculator
 {
     public partial class Form1 : Form
     {
+        private Context _context;
         private string input = String.Empty;
         private string splitPattern = "([-+*/()])";
         public Form1()
@@ -86,7 +87,7 @@ namespace Calculator
             string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             string[] postfix = infixToPostfix(infix);
             double result = evaluatePostfix(postfix);
-            displayToTextBox(result);
+            displayToTextBox(result.ToString());
         }
 
         private double evaluatePostfix(string[] postfix)
@@ -98,6 +99,7 @@ namespace Calculator
                 switch (postfix[i])
                 {
                     case "+":
+                        _context = new Context(new )
                         break;
                     case "-":
                         break;
@@ -106,8 +108,7 @@ namespace Calculator
                     case "/":
                         break;
                     default:
-                        Double.Parse(postfix[i]);
-
+                        break;
                 }
             }
 
@@ -186,7 +187,5 @@ namespace Calculator
             }
             return -1;
         }
-
-        private double Sub
     }
 }
