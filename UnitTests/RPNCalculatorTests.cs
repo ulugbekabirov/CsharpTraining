@@ -21,7 +21,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void evaluatePostfix_PassIntegersInPostfix_ComputesExpression()
+        public void evaluatePostfix_PassIntegerInPostfix_ComputesExpression()
         {
             //Arrange
             var inputValue = new string[] { "20", "50", "+", "30", "20", "+", "*" };
@@ -38,8 +38,8 @@ namespace UnitTests
         public void evaluatePostfix_PassDoubleInPostfix_ComputesExpression()
         {
             //Arrange 
-            var inputValue = new string[] { "2", "5.5", "+", "3.3", "2.2", "+", "*" };
-            var expectedValue = new decimal(42.9);
+            var inputValue = new string[] { "2.3", "5.5", "+", "3.3", "2.2", "-", "*" };
+            var expectedValue = new decimal(8.58);
 
             //Act
             var result = RPNCalculator.evaluatePostfix(inputValue);
