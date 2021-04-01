@@ -13,9 +13,6 @@ namespace Calculator
     public partial class Form1 : Form
     {
         private string input = String.Empty;
-        double result;
-        string[] tokens = new string[] { };
-        Stack<double> stack = new Stack<double>();
 
         public Form1()
         {
@@ -56,9 +53,11 @@ namespace Calculator
 
         private void backspace_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            input = input.Remove(input.Length - 1, 1);
-            displayToTextBox(input);
+            if (input.Length > 0)
+            {
+                input = input.Remove(input.Length - 1, 1);
+                displayToTextBox(input);
+            }
         }
 
         private void leftParenthesis_Click(object sender, EventArgs e)
@@ -83,19 +82,89 @@ namespace Calculator
 
         private void compute_Click(object sender, EventArgs e)
         {
-            string[] postfix = infixToPostfix(input);
-            double result = evaluatePostfix(postfix);
+            string postfix = infixToPostfix(input);
+            //double result = evaluatePostfix(postfix);
+            displayToTextBox(postfix.ToString());
         }
 
-        private double evaluatePostfix(string[] postfix)
+        private double evaluatePostfix(string postfix)
         {
-            throw new NotImplementedException();
+
         }
 
 
-        private string[] infixToPostfix(string infix)
+        private string infixToPostfix(string infix)
         {
-            throw new NotImplementedException();
+            string result = "";
+
+            Stack<char> stack = new Stack<char>();
+
+            for (int i = 0; i < infix.Length; ++i)
+            {
+                char c = infix[i];
+
+                if (char.IsDigit(c))
+                {
+                    result += c;
+                }
+
+                else if (c == '(')
+                {
+                    stack.Push(c);
+                }
+
+                else if (c == ')')
+                {
+                    while (stack.Count > 0 &&
+                            stack.Peek() != '(')
+                    {
+                        result += stack.Pop();
+                    }
+
+                    if (stack.Count > 0 && stack.Peek() != '(')
+                    {
+                        return "Invalid Expression"; 
+                    }
+                    else
+                    {
+                        stack.Pop();
+                    }
+                }
+                else 
+                {
+                    while (stack.Count > 0 && precedence(c) <= precedence(stack.Peek()))
+                    {
+                        result += stack.Pop();
+                    }
+                    stack.Push(c);
+                }
+
+            }
+
+            while (stack.Count > 0)
+            {
+                result += stack.Pop();
+            }
+
+            return result;
+        }
+
+        internal static int precedence(char ch)
+        {
+            switch (ch)
+            {
+                case '+':
+                case '-':
+                    return 1;
+
+                case '*':
+                case '/':
+                    return 2;
+
+                case '^':
+                    return 3;
+            }
+            return -1;
         }
     }
 }
