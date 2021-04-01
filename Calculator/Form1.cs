@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,7 +14,7 @@ namespace Calculator
     public partial class Form1 : Form
     {
         private string input = String.Empty;
-
+        private string splitPattern = "([-+*/()])";
         public Form1()
         {
             InitializeComponent();
@@ -82,48 +83,67 @@ namespace Calculator
 
         private void compute_Click(object sender, EventArgs e)
         {
-            string postfix = infixToPostfix(input);
-            //double result = evaluatePostfix(postfix);
-            displayToTextBox(postfix.ToString());
+            string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            string[] postfix = infixToPostfix(infix);
+            double result = evaluatePostfix(postfix);
+            displayToTextBox(result);
         }
 
-        private double evaluatePostfix(string postfix)
+        private double evaluatePostfix(string[] postfix)
         {
+            Stack<double> stack = new Stack<double>();
 
+            for (int i = 0; i < postfix.Length; i++)
+            {
+                switch (postfix[i])
+                {
+                    case "+":
+                        break;
+                    case "-":
+                        break;
+                    case "*":
+                        break;
+                    case "/":
+                        break;
+                    default:
+                        Double.Parse(postfix[i]);
+
+                }
+            }
+
+            return stack.Pop();
         }
 
-
-        private string infixToPostfix(string infix)
+        private string[] infixToPostfix(string[] infix)
         {
-            string result = "";
-
-            Stack<char> stack = new Stack<char>();
+            var result = new List<string>(); 
+            var stack = new Stack<string>();
 
             for (int i = 0; i < infix.Length; ++i)
             {
-                char c = infix[i];
+                string c = infix[i];
 
-                if (char.IsDigit(c))
+                if (c.All(char.IsDigit))
                 {
-                    result += c;
+                    result.Add(c);
                 }
 
-                else if (c == '(')
+                else if (c == "(")
                 {
                     stack.Push(c);
                 }
 
-                else if (c == ')')
+                else if (c == ")")
                 {
                     while (stack.Count > 0 &&
-                            stack.Peek() != '(')
+                            stack.Peek() != "(")
                     {
-                        result += stack.Pop();
+                        result.Add(stack.Pop());
                     }
 
-                    if (stack.Count > 0 && stack.Peek() != '(')
+                    if (stack.Count > 0 && stack.Peek() != "(")
                     {
-                        return "Invalid Expression"; 
+                        throw new InvalidOperationException("Invalid Expression"); 
                     }
                     else
                     {
@@ -134,7 +154,7 @@ namespace Calculator
                 {
                     while (stack.Count > 0 && precedence(c) <= precedence(stack.Peek()))
                     {
-                        result += stack.Pop();
+                        result.Add(stack.Pop());
                     }
                     stack.Push(c);
                 }
@@ -143,28 +163,30 @@ namespace Calculator
 
             while (stack.Count > 0)
             {
-                result += stack.Pop();
+                result.Add(stack.Pop());
             }
 
-            return result;
+            return result.ToArray();
         }
 
-        internal static int precedence(char ch)
+        internal static int precedence(string ch)
         {
             switch (ch)
             {
-                case '+':
-                case '-':
+                case "+":
+                case "-":
                     return 1;
 
-                case '*':
-                case '/':
+                case "*":
+                case "/":
                     return 2;
 
-                case '^':
+                case "^":
                     return 3;
             }
             return -1;
         }
+
+        private double Sub
     }
 }
