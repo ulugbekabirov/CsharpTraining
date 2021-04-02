@@ -7,9 +7,9 @@ namespace Calculator
     {
         private static Context _context;
 
-        public static decimal evaluatePostfix(string[] postfix)
+        public static decimal EvaluatePostfix(string[] postfix)
         {
-            Stack<decimal> stack = new Stack<decimal>();
+            var stack = new Stack<decimal>();
             decimal val1, val2;
             for (int i = 0; i < postfix.Length; i++)
             {
@@ -44,7 +44,7 @@ namespace Calculator
             return stack.Pop();
         }
 
-        public static string[] infixToPostfix(string[] infix)
+        public static string[] InfixToPostfix(string[] infix)
         {
             var result = new List<string>();
             var stack = new Stack<string>();
@@ -82,7 +82,7 @@ namespace Calculator
                 }
                 else
                 {
-                    while (stack.Count > 0 && precedence(c) <= precedence(stack.Peek()))
+                    while (stack.Count > 0 && Precedence(c) <= Precedence(stack.Peek()))
                     {
                         result.Add(stack.Pop());
                     }
@@ -99,22 +99,15 @@ namespace Calculator
             return result.ToArray();
         }
 
-        private static int precedence(string ch)
+        private static int Precedence(string ch)
         {
-            switch (ch)
+            return ch switch
             {
-                case "+":
-                case "-":
-                    return 1;
-
-                case "*":
-                case "/":
-                    return 2;
-
-                case "^":
-                    return 3;
-            }
-            return -1;
+                "+" or "-" => 1,
+                "*" or "/" => 2,
+                "^" => 3,
+                _ => -1,
+            };
         }
     }
 }

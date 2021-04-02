@@ -91,8 +91,8 @@ namespace Calculator
                 try
                 {
                     string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-                    string[] postfix = RPNCalculator.infixToPostfix(infix);
-                    decimal result = RPNCalculator.evaluatePostfix(postfix);
+                    string[] postfix = RPNCalculator.InfixToPostfix(infix);
+                    decimal result = RPNCalculator.EvaluatePostfix(postfix);
                     DisplayToTextBox(result.ToString());
                 }
                 catch (Exception ex)
