@@ -11,6 +11,7 @@ namespace Calculator
         private string input = String.Empty;
         private readonly string splitPattern = "([-+*/()])";
         private readonly char[] availableOperators = { '+', '-', '*', '/' };
+
         public Form1()
         {
             InitializeComponent();
@@ -21,69 +22,69 @@ namespace Calculator
 
         }
 
-        private void displayToTextBox(string text)
+        private void DisplayToTextBox(string text)
         {
             textBox.Text = "";
             textBox.Text += text;
         }
 
-        private void operand_Click(object sender, EventArgs e)
+        private void Operand_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             input += btn.Text;
-            displayToTextBox(input);
+            DisplayToTextBox(input);
         }
 
-        private void operator_Click(object sender, EventArgs e)
+        private void Operator_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             if (!availableOperators.Contains(input.Last()))
             {
                 input += btn.Text;
-                displayToTextBox(input);
+                DisplayToTextBox(input);
             }
         }
 
-        private void dot_Click(object sender, EventArgs e)
+        private void Dot_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             if (char.IsDigit(input.LastOrDefault()))
             {
                 input += btn.Text;
-                displayToTextBox(input);
+                DisplayToTextBox(input);
             }
         }
 
-        private void backspace_Click(object sender, EventArgs e)
+        private void Backspace_Click(object sender, EventArgs e)
         {
             if (input.Length > 0)
             {
                 input = input.Remove(input.Length - 1, 1);
-                displayToTextBox(input);
+                DisplayToTextBox(input);
             }
         }
 
-        private void leftParenthesis_Click(object sender, EventArgs e)
+        private void LeftParenthesis_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             input += btn.Text;
-            displayToTextBox(input);
+            DisplayToTextBox(input);
         }
 
-        private void rightParenthesis_Click(object sender, EventArgs e)
+        private void RightParenthesis_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             input += btn.Text;
-            displayToTextBox(input);
+            DisplayToTextBox(input);
         }
 
-        private void erase_Click(object sender, EventArgs e)
+        private void Erase_Click(object sender, EventArgs e)
         {
             input = string.Empty;
-            displayToTextBox(input);
+            DisplayToTextBox(input);
         }
 
-        private void compute_Click(object sender, EventArgs e)
+        private void Compute_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -92,11 +93,11 @@ namespace Calculator
                     string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
                     string[] postfix = RPNCalculator.infixToPostfix(infix);
                     decimal result = RPNCalculator.evaluatePostfix(postfix);
-                    displayToTextBox(result.ToString());
+                    DisplayToTextBox(result.ToString());
                 }
                 catch (Exception ex)
                 {
-                    displayToTextBox(ex.Message);
+                    DisplayToTextBox(ex.Message);
                 }
                 finally
                 {

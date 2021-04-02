@@ -9,9 +9,9 @@
             this._operator = _operator;
         }
 
-        public decimal executeOperator(decimal num1, decimal num2)
+        public decimal ExecuteOperator(decimal num1, decimal num2)
         {
-            return _operator.doOperation(num1, num2);
+            return _operator.DoOperation(num1, num2);
         }
     }
 }

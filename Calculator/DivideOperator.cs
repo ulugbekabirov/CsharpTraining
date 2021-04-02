@@ -4,7 +4,7 @@ namespace Calculator
 {
     public class DivideOperator : IOperator
     {
-        public decimal doOperation(decimal num1, decimal num2)
+        public decimal DoOperation(decimal num1, decimal num2)
         {
             if (num2 == 0)
             {

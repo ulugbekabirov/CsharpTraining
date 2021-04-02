@@ -17,23 +17,23 @@ namespace Calculator
                 {
                     case "+":
                         _context = new Context(new AddOperator());
-                        stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
+                        stack.Push(_context.ExecuteOperator(stack.Pop(), stack.Pop()));
                         break;
                     case "-":
                         _context = new Context(new SubtractOperator());
                         val1 = stack.Pop();
                         val2 = stack.Pop();
-                        stack.Push(_context.executeOperator(val2, val1));
+                        stack.Push(_context.ExecuteOperator(val2, val1));
                         break;
                     case "*":
                         _context = new Context(new MultiplyOperator());
-                        stack.Push(_context.executeOperator(stack.Pop(), stack.Pop()));
+                        stack.Push(_context.ExecuteOperator(stack.Pop(), stack.Pop()));
                         break;
                     case "/":
                         _context = new Context(new DivideOperator());
                         val1 = stack.Pop();
                         val2 = stack.Pop();
-                        stack.Push(_context.executeOperator(val2, val1));
+                        stack.Push(_context.ExecuteOperator(val2, val1));
                         break;
                     default:
                         stack.Push(decimal.Parse(postfix[i]));
