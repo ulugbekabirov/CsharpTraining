@@ -30,14 +30,14 @@ namespace Calculator
 
         private void Operand_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            var btn = sender as Button;
             input += btn.Text;
             DisplayToTextBox(input);
         }
 
         private void Operator_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            var btn = sender as Button;
             if (!availableOperators.Contains(input.Last()))
             {
                 input += btn.Text;
@@ -47,7 +47,7 @@ namespace Calculator
 
         private void Dot_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            var btn = sender as Button;
             if (char.IsDigit(input.LastOrDefault()))
             {
                 input += btn.Text;
@@ -66,14 +66,14 @@ namespace Calculator
 
         private void LeftParenthesis_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            var btn = sender as Button;
             input += btn.Text;
             DisplayToTextBox(input);
         }
 
         private void RightParenthesis_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            var btn = sender as Button;
             input += btn.Text;
             DisplayToTextBox(input);
         }
@@ -90,9 +90,9 @@ namespace Calculator
             {
                 try
                 {
-                    string[] infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-                    string[] postfix = RPNCalculator.InfixToPostfix(infix);
-                    decimal result = RPNCalculator.EvaluatePostfix(postfix);
+                    var infix = Regex.Split(input, splitPattern).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+                    var postfix = RPNCalculator.InfixToPostfix(infix);
+                    var result = RPNCalculator.EvaluatePostfix(postfix);
                     DisplayToTextBox(result.ToString());
                 }
                 catch (Exception ex)
