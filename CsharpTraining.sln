@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{4D758731-A8D5-451D-B747-CB19C99E9006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Calculator.csproj", "{4D758731-A8D5-451D-B747-CB19C99E9006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{381BB07F-66A4-406B-AD75-B3149F6A2A56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{381BB07F-66A4-406B-AD75-B3149F6A2A56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurencyTask", "ConcurencyTask\ConcurencyTask.csproj", "{27B76D83-545B-4274-9420-15F608B8C589}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{381BB07F-66A4-406B-AD75-B3149F6A2A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381BB07F-66A4-406B-AD75-B3149F6A2A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{381BB07F-66A4-406B-AD75-B3149F6A2A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B76D83-545B-4274-9420-15F608B8C589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B76D83-545B-4274-9420-15F608B8C589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B76D83-545B-4274-9420-15F608B8C589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B76D83-545B-4274-9420-15F608B8C589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
