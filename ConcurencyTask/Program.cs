@@ -12,7 +12,7 @@ namespace ConcurencyTask
             
             for (int i = 0; i < tasks.Length; i++)
             {
-                tasks[i] = Task.Factory.StartNew(() => Console.WriteLine(i));
+                tasks[i] = Task.Factory.StartNew(() => Console.WriteLine(j++));
             }
 
             Console.ReadLine();
