@@ -7,11 +7,16 @@ namespace ConcurencyTask
     {
         static void Main(string[] args)
         {
-            Task[] tasks = new Task[10];
-            int j = 1;
+            var tasks = new Task[10];
+            var j = 1;
+            
             for (int i = 0; i < tasks.Length; i++)
-                tasks[i] = Task.Factory.StartNew(() => Console.WriteLine(++j));
+            {
+                tasks[i] = Task.Factory.StartNew(() => Console.WriteLine(i));
+            }
+
             Console.ReadLine();
+
         }
     }
 
