@@ -8,7 +8,7 @@ namespace ConcurencyTask
         static async Task Main(string[] args)
         {
             var tasks = new Task[10];
-            Action p = null;
+
             for (int i = 0; i < tasks.Length; i++)
             {
                 int j = i;
