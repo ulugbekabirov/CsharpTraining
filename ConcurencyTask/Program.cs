@@ -5,18 +5,18 @@ namespace ConcurencyTask
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var tasks = new Task[10];
-            var j = 1;
-            
+            Action p = null;
             for (int i = 0; i < tasks.Length; i++)
             {
-                tasks[i] = Task.Factory.StartNew(() => Console.WriteLine(j++));
+                int j = i;
+                tasks[i] = new Task(() => Console.WriteLine(j+1));
+                await Task.Run(()=>tasks[i].Start());
             }
 
             Console.ReadLine();
-
         }
     }
 
