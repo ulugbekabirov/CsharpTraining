@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{381BB07F-66A4-406B-AD75-B3149F6A2A56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurencyTask", "ConcurencyTask\ConcurencyTask.csproj", "{27B76D83-545B-4274-9420-15F608B8C589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurencyTask", "ConcurencyTask\ConcurencyTask.csproj", "{27B76D83-545B-4274-9420-15F608B8C589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutexTask", "MutexTask\MutexTask.csproj", "{CEBB892A-637A-4D58-B044-515B464A456F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{27B76D83-545B-4274-9420-15F608B8C589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27B76D83-545B-4274-9420-15F608B8C589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27B76D83-545B-4274-9420-15F608B8C589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBB892A-637A-4D58-B044-515B464A456F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBB892A-637A-4D58-B044-515B464A456F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBB892A-637A-4D58-B044-515B464A456F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBB892A-637A-4D58-B044-515B464A456F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
