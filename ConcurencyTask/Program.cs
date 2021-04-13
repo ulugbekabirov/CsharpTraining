@@ -7,13 +7,11 @@ namespace ConcurencyTask
     {
         static async Task Main(string[] args)
         {
-            var tasks = new Task[10];
-
-            for (int i = 0; i < tasks.Length; i++)
+            var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            foreach (var i in data)
             {
-                int j = i;
-                tasks[i] = new Task(() => Console.WriteLine(j+1));
-                await Task.Run(()=>tasks[i].Start());
+                var task = new Task(() => Console.WriteLine(i));
+                await Task.Run(() => task.Start());
             }
 
             Console.ReadLine();
