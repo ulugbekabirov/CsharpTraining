@@ -33,7 +33,6 @@ namespace MutexTask
             this.ProgressBar2 = new System.Windows.Forms.ProgressBar();
             this.Start = new System.Windows.Forms.Button();
             this.Switch = new System.Windows.Forms.Button();
-            this.Stop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ProgressBar1
@@ -70,22 +69,11 @@ namespace MutexTask
             this.Switch.UseVisualStyleBackColor = true;
             this.Switch.Click += new System.EventHandler(this.Switch_Click);
             // 
-            // Stop
-            // 
-            this.Stop.Location = new System.Drawing.Point(649, 227);
-            this.Stop.Name = "Stop";
-            this.Stop.Size = new System.Drawing.Size(94, 29);
-            this.Stop.TabIndex = 4;
-            this.Stop.Text = "Stop";
-            this.Stop.UseVisualStyleBackColor = true;
-            this.Stop.Click += new System.EventHandler(this.Stop_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Stop);
             this.Controls.Add(this.Switch);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.ProgressBar2);
@@ -102,7 +90,6 @@ namespace MutexTask
         private System.Windows.Forms.ProgressBar ProgressBar2;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button Switch;
-        private System.Windows.Forms.Button Stop;
     }
 }
 

@@ -33,20 +33,22 @@ namespace MutexTask
             switched = true;
         }
 
-        private void Stop_Click(object sender, EventArgs e)
-        {
-
-        }
         private void ProgressChanged(ProgressBar progressBar, int value)
         {
             Action action = () =>
             {
                 progressBar.Value = value;
             };
-
-            Invoke(action);
-
+            if (IsDisposed)
+            {
+                
+            }
+            else
+            {
+                Invoke(action);
+            }
         }
+
         public void Progress(ProgressBar progressBar)
         {
             mutex.WaitOne();
