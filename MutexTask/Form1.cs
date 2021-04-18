@@ -15,13 +15,20 @@ namespace MutexTask
     {
         public static Mutex mutex = new Mutex();
         public bool switched = false;
+        public bool stoped = false;
         public Form1()
         {
             InitializeComponent();
         }
 
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            stoped = true;
+        }
+
         private void Start_Click(object sender, EventArgs e)
         {
+
             var thread1 = new Thread(() => Progress(ProgressBar1));
             var thread2 = new Thread(() => Progress(ProgressBar2));
             thread1.Start();
@@ -37,23 +44,24 @@ namespace MutexTask
         {
             Action action = () =>
             {
-                progressBar.Value = value;
+                if (progressBar.Value == 100)
+                {
+                    progressBar.Value = 0;
+                }
+                else
+                {
+                    progressBar.Value = value;
+                }
             };
-            if (IsDisposed)
-            {
-                
-            }
-            else
-            {
-                Invoke(action);
-            }
+
+            Invoke(action);
         }
 
         public void Progress(ProgressBar progressBar)
         {
             mutex.WaitOne();
 
-            for (int i = 0; i <= 100; i++)
+            for (int i = progressBar.Value; i <= 100; i++)
             {
                 if (switched)
                 {
@@ -66,6 +74,11 @@ namespace MutexTask
             }
 
             Progress(progressBar);
+        }
+
+        private void Stop_Click(object sender, EventArgs e)
+        {
+            stoped = true;
         }
     }
 }
