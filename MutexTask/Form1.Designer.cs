@@ -42,7 +42,6 @@ namespace MutexTask
             this.ProgressBar1.Name = "ProgressBar1";
             this.ProgressBar1.Size = new System.Drawing.Size(708, 29);
             this.ProgressBar1.TabIndex = 0;
-            this.ProgressBar1.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // ProgressBar2
             // 
@@ -50,7 +49,6 @@ namespace MutexTask
             this.ProgressBar2.Name = "ProgressBar2";
             this.ProgressBar2.Size = new System.Drawing.Size(708, 29);
             this.ProgressBar2.TabIndex = 1;
-            this.ProgressBar2.Click += new System.EventHandler(this.ProgressBar2_Click);
             // 
             // Start
             // 
