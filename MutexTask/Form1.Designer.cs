@@ -29,6 +29,7 @@ namespace MutexTask
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ProgressBar.CheckForIllegalCrossThreadCalls = false;
             this.ProgressBar1 = new System.Windows.Forms.ProgressBar();
             this.ProgressBar2 = new System.Windows.Forms.ProgressBar();
             this.Start = new System.Windows.Forms.Button();

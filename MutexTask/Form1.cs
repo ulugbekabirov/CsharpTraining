@@ -42,38 +42,35 @@ namespace MutexTask
 
         private void ProgressChanged(ProgressBar progressBar, int value)
         {
-            Action action = () =>
-            {
-                if (progressBar.Value == 100)
-                {
-                    progressBar.Value = 0;
-                }
-                else
-                {
-                    progressBar.Value = value;
-                }
-            };
 
-            Invoke(action);
+            if (progressBar.Value == 100)
+            {
+                progressBar.Value = 0;
+            }
+            else
+            {
+                progressBar.Value = value;
+            }
+
         }
 
         public void Progress(ProgressBar progressBar)
         {
             mutex.WaitOne();
-
-            for (int i = progressBar.Value; i <= 100; i++)
+            while (true)
             {
-                if (switched)
+                for (int i = progressBar.Value; i <= 100; i++)
                 {
-                    mutex.ReleaseMutex();
-                    switched = false;
-                    break;
+                    if (switched)
+                    {
+                        mutex.ReleaseMutex();
+                        switched = false;
+                        break;
+                    }
+                    Thread.Sleep(50);
+                    ProgressChanged(progressBar, i);
                 }
-                Thread.Sleep(50);
-                ProgressChanged(progressBar, i);
             }
-
-            Progress(progressBar);
         }
 
         private void Stop_Click(object sender, EventArgs e)
