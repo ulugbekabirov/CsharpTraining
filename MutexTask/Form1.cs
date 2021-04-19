@@ -13,7 +13,7 @@ namespace MutexTask
 {
     public partial class Form1 : Form
     {
-        private static Mutex mutex = new Mutex();
+        private static readonly Mutex mutex = new Mutex();
         private bool switched = false;
         private bool stoped = false;
         public Form1()
