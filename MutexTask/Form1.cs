@@ -13,9 +13,9 @@ namespace MutexTask
 {
     public partial class Form1 : Form
     {
-        public static Mutex mutex = new Mutex();
-        public bool switched = false;
-        public bool stoped = false;
+        private static Mutex mutex = new Mutex();
+        private bool switched = false;
+        private bool stoped = false;
         public Form1()
         {
             InitializeComponent();
