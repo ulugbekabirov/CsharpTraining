@@ -40,16 +40,9 @@ namespace MutexTask
             switched = true;
         }
 
-        private void ProgressChanged(ProgressBar progressBar, ref int value)
+        private void ProgressChanged(ProgressBar progressBar, int value)
         {
-
-            if (value >= 100)
-            {
-                value = 0;
-            }
-
             progressBar.Value = value;
-            value++;
         }
 
         public void Progress(ProgressBar progressBar)
@@ -66,8 +59,12 @@ namespace MutexTask
                         switched = false;
                         break;
                     }
+                    if (i >= 100)
+                    {
+                        i = 0;
+                    }
                     Thread.Sleep(50);
-                    ProgressChanged(progressBar, ref i);
+                    ProgressChanged(progressBar, i++);
                 }
             }
 
