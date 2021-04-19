@@ -28,7 +28,6 @@ namespace MutexTask
 
         private void Start_Click(object sender, EventArgs e)
         {
-
             var thread1 = new Thread(() => Progress(ProgressBar1));
             var thread2 = new Thread(() => Progress(ProgressBar2));
             thread1.Start();
@@ -53,6 +52,12 @@ namespace MutexTask
                 mutex.WaitOne();
                 while (true)
                 {
+                    if (stoped)
+                    {
+                        progressBar.Value = 0;
+                        mutex.ReleaseMutex();
+                        return;
+                    }
                     if (switched)
                     {
                         mutex.ReleaseMutex();
@@ -67,8 +72,6 @@ namespace MutexTask
                     ProgressChanged(progressBar, i++);
                 }
             }
-
-
         }
 
         private void Stop_Click(object sender, EventArgs e)
