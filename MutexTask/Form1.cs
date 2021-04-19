@@ -40,26 +40,25 @@ namespace MutexTask
             switched = true;
         }
 
-        private void ProgressChanged(ProgressBar progressBar, int value)
+        private void ProgressChanged(ProgressBar progressBar, ref int value)
         {
 
-            if (progressBar.Value == 100)
+            if (value >= 100)
             {
-                progressBar.Value = 0;
-            }
-            else
-            {
-                progressBar.Value = value;
+                value = 0;
             }
 
+            progressBar.Value = value;
+            value++;
         }
 
         public void Progress(ProgressBar progressBar)
         {
-            mutex.WaitOne();
+            int i = 0;
             while (true)
             {
-                for (int i = progressBar.Value; i <= 100; i++)
+                mutex.WaitOne();
+                while (true)
                 {
                     if (switched)
                     {
@@ -68,9 +67,11 @@ namespace MutexTask
                         break;
                     }
                     Thread.Sleep(50);
-                    ProgressChanged(progressBar, i);
+                    ProgressChanged(progressBar, ref i);
                 }
             }
+
+
         }
 
         private void Stop_Click(object sender, EventArgs e)
